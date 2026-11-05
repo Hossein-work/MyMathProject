@@ -14,6 +14,9 @@
             case 1:
                 Console.WriteLine(Factorial(long.Parse(Console.ReadLine())).ToString("##,##"));
                 break;
+            case 2:
+                Console.WriteLine(Fibonachi(long.Parse(Console.ReadLine())).ToString("##,##"));
+                break;
         }
     }
     internal static long Factorial(long x)
@@ -23,5 +26,10 @@
         else
             return x * Factorial(x - 1);
     }
-   
+    internal static long Fibonachi(long x)
+    {
+        if (x == 1 || x == 2) return 1;
+        else return Fibonachi(x - 1) + Fibonachi(x - 2);
+    }
+
 }
