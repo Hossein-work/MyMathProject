@@ -1,4 +1,6 @@
-﻿static class Program
+﻿using System.Runtime.CompilerServices;
+
+static class Program
 {
     static void Main(string[] args)
     {
@@ -7,6 +9,7 @@
             1. Factorial Calculation.
             2. Calculating the nth term of the Fibonacci sequence.
             3. Calculating the multiplication of two numbers.
+            4. Reverse a linked list.
             """);
         int input = int.Parse(Console.ReadLine());
         switch (input)
@@ -22,7 +25,28 @@
                 long b = long.Parse(Console.ReadLine());
                 Console.WriteLine(CrossWithPlus(a, b));
                 break;
+            case 4:
+                List<long> list = new List<long>();
+                LinkedListReverse(GetList(), list);
+                foreach (var item in list)
+                {
+                    Console.WriteLine(item);
+                }
+                break;
         }
+    }
+    private static List<long> GetList()
+    {
+        Console.WriteLine("Please enter number of list elements:");
+        int n = int.Parse(Console.ReadLine());
+        List<long> list = new List<long>();
+        for (int i = 1; i <= n; i++)
+        {
+            Console.WriteLine($"Please enter amount of element {i}");
+            long amount = long.Parse(Console.ReadLine());
+            list.Add(amount);
+        }
+        return list;
     }
     internal static long Factorial(long x)
     {
@@ -44,4 +68,17 @@
             return y + CrossWithPlus(x - 1, y);
     }
 
+    internal static void LinkedListReverse(this List<long> listInput, List<long> outPut)
+    {
+        if (listInput.Count == 1)
+        {
+            outPut.Add(listInput[0]);
+        }
+        else
+        {
+            outPut.Add(listInput[listInput.Count - 1]);
+            listInput.RemoveAt(listInput.Count - 1);
+            LinkedListReverse(listInput, outPut);
+        }
+    }
 }
