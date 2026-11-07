@@ -10,6 +10,7 @@ static class Program
             2. Calculating the nth term of the Fibonacci sequence.
             3. Calculating the multiplication of two numbers.
             4. Reverse a linked list.
+            5. Graph Color
             """);
         int input = int.Parse(Console.ReadLine());
         switch (input)
@@ -32,6 +33,28 @@ static class Program
                 {
                     Console.WriteLine(item);
                 }
+                break;
+            case 5:
+                Console.WriteLine("Please enter Graph Vertex Count :");
+                int vertexCount = int.Parse(Console.ReadLine());
+                int[] vGraph = new int[vertexCount];
+                Console.WriteLine("Please enter Graph Edge Count:");
+                int edgeCount = int.Parse(Console.ReadLine());
+                int[,] edges = new int[2, edgeCount];
+                for (int i = 0; i < edgeCount; i++)
+                {
+                    Console.WriteLine($"Please enter the number of vertices of edge {i + 1}");
+                    string enter = Console.ReadLine();
+                    string[] str = new string[2];
+                    str = enter.Split();
+                    edges[0, i] = int.Parse(str[0]);
+                    edges[1, i] = int.Parse(str[1]);
+                }
+                Dictionary<int, List<int>> dic = new Dictionary<int, List<int>>();
+                int color = 1;
+                GraphColor(ref vGraph, edges, ref color, ref dic);
+                color--;
+                Console.WriteLine(color);
                 break;
         }
     }
