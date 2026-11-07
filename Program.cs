@@ -81,4 +81,45 @@ static class Program
             LinkedListReverse(listInput, outPut);
         }
     }
+
+    internal static void GraphColor(ref int[] vGraph, int[,] eGraph, ref int colorCount, ref Dictionary<int, List<int>> dic)
+    {
+        if (ElementNoColorExist(vGraph))
+        {
+            List<int> coloredList = new List<int>();
+            for (int i = 0; i < vGraph.Length; i++)
+            {
+                if (vGraph[i] == 0)
+                {
+                    if (CheckX(i + 1, ref eGraph, coloredList))
+                    {
+                        coloredList.Add(i + 1);
+                        vGraph[i] = colorCount;
+                    }
+                }
+            }
+            dic[colorCount] = coloredList;
+            colorCount++;
+            GraphColor(ref vGraph, eGraph, ref colorCount, ref dic);
+        }
+    }
+    private static bool ElementNoColorExist(in int[] vGraph)
+    {
+        for (int i = 0; i < vGraph.Length; i++)
+            if (vGraph[i] == 0) return true;
+        return false;
+    }
+    private static bool CheckX(int x, ref int[,] eGraph, List<int> l)
+    {
+        for (int i = 0; i < eGraph.Length / 2; i++)
+        {
+            if (eGraph[0, i] == x)
+                if (l.Contains(eGraph[1, i]))
+                    return false;
+            if (eGraph[1, i] == x)
+                if (l.Contains(eGraph[0, i]))
+                    return false;
+        }
+        return true;
+    }
 }
