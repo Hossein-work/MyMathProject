@@ -51,10 +51,20 @@ static class Program
                     edges[1, i] = int.Parse(str[1]);
                 }
                 Dictionary<int, List<int>> dic = new Dictionary<int, List<int>>();
-                int color = 1;
-                GraphColor(ref vGraph, edges, ref color, ref dic);
-                color--;
-                Console.WriteLine(color);
+                int color1 = 1;
+                GraphColor_Way1(ref vGraph, edges, ref color1, ref dic);
+                color1--;
+                Console.WriteLine(color1);
+
+
+                int color2 = 1;
+                for (int i = 0; i < vGraph.Length; i++)
+                {
+                    vGraph[i] = 0;
+                }
+                GraphColor_Way2(ref vGraph, edges, ref color2, ref dic);
+                color2--;
+                Console.WriteLine(color2);
                 break;
         }
     }
@@ -105,7 +115,7 @@ static class Program
         }
     }
 
-    internal static void GraphColor(ref int[] vGraph, int[,] eGraph, ref int colorCount, ref Dictionary<int, List<int>> dic)
+    internal static void GraphColor_Way1(ref int[] vGraph, int[,] eGraph, ref int colorCount, ref Dictionary<int, List<int>> dic)
     {
         if (ElementNoColorExist(vGraph))
         {
@@ -123,8 +133,52 @@ static class Program
             }
             dic[colorCount] = coloredList;
             colorCount++;
-            GraphColor(ref vGraph, eGraph, ref colorCount, ref dic);
+            GraphColor_Way1(ref vGraph, eGraph, ref colorCount, ref dic);
         }
+    }
+    internal static void GraphColor_Way2(ref int[] vGraph, int[,] eGraph, ref int colorCount, ref Dictionary<int, List<int>> dic)
+    {
+        if (ElementNoColorExist(vGraph))
+        {
+            List<int> coloredList = new List<int>();
+            int[] saver = GraphColor_Way2Helper(ref vGraph, eGraph, colorCount);
+            foreach (var i in saver)
+            {
+                if (vGraph[i] == 0)
+                {
+                    if (CheckX(i + 1, ref eGraph, coloredList))
+                    {
+                        coloredList.Add(i + 1);
+                        vGraph[i] = colorCount;
+                    }
+                }
+            }
+            dic[colorCount] = coloredList;
+            colorCount++;
+            GraphColor_Way2(ref vGraph, eGraph, ref colorCount, ref dic);
+        }
+    }
+    private static int[] GraphColor_Way2Helper(ref int[] vGraph, int[,] eGraph, int colorCount)
+    {
+        int[] degrees = new int[vGraph.Length];
+        for (int i = 0; i < vGraph.Length; i++)
+        {
+            for (int j = 0; j < eGraph.Length / 2; j++)
+            {
+                if (i+1 == eGraph[0, j])
+                    degrees[i]++;
+                if (i+1 == eGraph[1, j])
+                    degrees[i]++;
+            }
+        }
+        int[] saver = new int[vGraph.Length];
+        for (int i = 0; i < vGraph.Length; i++)
+        {
+            int index = degrees.IndexOf(degrees.Max());
+            degrees[degrees.IndexOf(degrees.Max())] = -1;
+            saver[i] = index;
+        }
+        return saver;
     }
     private static bool ElementNoColorExist(in int[] vGraph)
     {
