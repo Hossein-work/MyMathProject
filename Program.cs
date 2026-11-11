@@ -11,6 +11,7 @@ static class Program
             3. Calculating the multiplication of two numbers.
             4. Reverse a linked list.
             5. Graph Color
+            6. Calculation Determinant for any matrix.
             """);
         int input = int.Parse(Console.ReadLine());
         switch (input)
@@ -62,6 +63,22 @@ static class Program
                 }
                 Graph.GraphColor_Way2(ref vGraph, edges, ref color2);
                 Console.WriteLine(color2);
+                break;
+            case 6:
+                Console.WriteLine("Please enter the number of row and column for square matrix :");
+                int rowAndColumn = int.Parse(Console.ReadLine());
+                List<long> matrix = new List<long>();
+                for (int i = 0; i < rowAndColumn; i++)
+                {
+                    for (int j = 0; j < rowAndColumn; j++)
+                    {
+                        Console.WriteLine($"Please enter row {i + 1} and column {j + 1} element :");
+                        long element = long.Parse(Console.ReadLine());
+                        matrix.Add(element);
+                    }
+                }
+                long determinant = 0;
+                
                 break;
         }
     }
