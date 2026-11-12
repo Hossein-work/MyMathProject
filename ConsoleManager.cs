@@ -9,7 +9,7 @@ namespace MyMathProject
         {
             Console.WriteLine("Please enter a number for the operation:");
             for (int i = 0; i < list.Length; i++)
-                Console.WriteLine(i + ". " + list[i] + "\n");   
+                Console.WriteLine((i+1) + ". " + list[i]);   
             return InputeManager.RangeInput<short>(0, (short)list.Length);
         }
         internal static void Print(string message) => Console.WriteLine(message);
