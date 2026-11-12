@@ -12,24 +12,24 @@
                 if (value.CompareTo(start) < 0 || value.CompareTo(end) > 0)
                 {
                     Console.WriteLine($"Please enter a number betwen {start} and {end}!");
-                    continue;
                 }
-
-                return value;
+                else
+                    return value;
             }
         }
         internal static T ValidInput<T>() where T : IParsable<T>
         {
-            do
+            while (true) 
             {
                 string? input = Console.ReadLine();
 
                 if (!T.TryParse(input, null, out T? value))
                 {
                     Console.WriteLine("Please enter a number :");
-                    continue;
                 }
-            } while (true);
+                else
+                    return value;
+            } 
         }
     }
 }
