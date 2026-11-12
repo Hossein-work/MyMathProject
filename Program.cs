@@ -1,18 +1,22 @@
-﻿using System.Runtime.CompilerServices;
+﻿using MyMathProject;
+using System.Drawing;
+using System.Runtime.CompilerServices;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 static class Program
 {
+    static string[] functionList = 
+    {
+         "Factorial Calculation.",
+         "Calculating the nth term of the Fibonacci sequence.",
+         "Calculating the multiplication of two numbers.",
+         "Reverse a linked list.",
+         "Graph Color",
+         "Calculation Determinant for any matrix."
+    };
     static void Main(string[] args)
     {
-        Console.WriteLine("""
-            Please enter a number for the operation:
-            1. Factorial Calculation.
-            2. Calculating the nth term of the Fibonacci sequence.
-            3. Calculating the multiplication of two numbers.
-            4. Reverse a linked list.
-            5. Graph Color
-            6. Calculation Determinant for any matrix.
-            """);
-        int input = int.Parse(Console.ReadLine());
+        ConsoleManager.Welcome();
+        short input = ConsoleManager.FunctionList(functionList);
         switch (input)
         {
             case 1:
