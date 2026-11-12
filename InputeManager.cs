@@ -1,32 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyMathProject
+﻿namespace MyMathProject
 {
     internal class InputeManager
     {
-        internal static int RangeInput(int start, int end)
+        internal static T RangeInput<T>(T start, T end)
+        where T : IParsable<T>, IComparable<T>
         {
-            int b;
-            do
+            while (true)
             {
-                b = ValidInput();
-                if (b < start || b > end)
-                    Console.WriteLine($"The entered value must be between {start} and {end}!");
-                else return b;
-            } while (true);
+                T value = ValidInput<T>();
+
+                if (value.CompareTo(start) < 0 || value.CompareTo(end) > 0)
+                {
+                    Console.WriteLine($"Please enter a number betwen {start} and {end}!");
+                    continue;
+                }
+
+                return value;
+            }
         }
-        internal static int ValidInput()
+        internal static T ValidInput<T>() where T : IParsable<T>
         {
-            int output;
             do
             {
-                if (int.TryParse(Console.ReadLine(), out output))
-                    break;
-                Console.WriteLine("Please enter a number!");
+                string? input = Console.ReadLine();
+
+                if (!T.TryParse(input, null, out T? value))
+                {
+                    Console.WriteLine("Please enter a number :");
+                    continue;
+                }
             } while (true);
-            return output;
         }
     }
 }
