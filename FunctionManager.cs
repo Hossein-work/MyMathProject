@@ -18,9 +18,23 @@ static class FunctionManager
     }
     internal static void CrossWithPlusM()
     {
-        int a = InputeManager.ValidInput<int>();
-        int b = InputeManager.ValidInput<int>();
-        long result = MathematicalCalculations.CrossWithPlus(a, b);
+        ConsoleManager.Print("number one :");
+        int a = InputeManager.RangeInput(-int.MaxValue, int.MaxValue);
+
+        ConsoleManager.Print("number two :");
+        int b = InputeManager.RangeInput(-int.MaxValue, int.MaxValue);
+
+        long result;
+        if (a < 0)
+        {
+            a *= -1;
+            result = MathematicalCalculations.CrossWithPlus(a, b);
+            result *= -1;
+        }
+        else
+        {
+            result = MathematicalCalculations.CrossWithPlus(a, b);
+        }
         ConsoleManager.Print(result.ToString("##,##"), ConsoleColor.Green);
     }
     internal static void ListReverseM()
