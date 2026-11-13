@@ -12,7 +12,7 @@ namespace MyMathProject
                 Console.WriteLine((i+1) + ". " + list[i]);   
             return InputeManager.RangeInput<short>(0, (short)list.Length);
         }
-        internal static void Print(string message) => Console.WriteLine(message);
+        internal static void Print(object message) => Console.WriteLine(message);
         internal static void Print(string message, ConsoleColor color)
         {
             Console.ForegroundColor = color;
