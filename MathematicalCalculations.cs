@@ -25,12 +25,12 @@ namespace MyMathProject
         }
         internal static BigInteger Fibonachi(int x)
         {
-            BigInteger[] list = { 1, 1, 0 };
+            x -= 2;// There are two 1's.
+            BigInteger[] list = { 1, 1 };
             int counter = 0;
-            while (x != 2)
+            while (counter != x)
             {
-                list[(counter + 2) % 3] = list[counter % 3] + list[(counter + 1) % 3];
-                x--;
+                list[counter % 2] = list[0] + list[1];
                 counter++;
             }
             return list.Max();
