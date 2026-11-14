@@ -1,4 +1,5 @@
 ﻿using MyMathProject;
+using System.Numerics;
 
 static class FunctionManager
 {
@@ -13,7 +14,7 @@ static class FunctionManager
     {
         ConsoleManager.Print("n is :");
         int input = InputeManager.RangeInput(0, int.MaxValue);
-        long result = MathematicalCalculations.Fibonachi(input);
+        BigInteger result = MathematicalCalculations.Fibonachi(input);
         ConsoleManager.Print(result.ToString("##,##"), ConsoleColor.Green);
     }
     internal static void CrossWithPlusM()
