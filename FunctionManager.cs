@@ -71,27 +71,27 @@ static class FunctionManager
         
         ConsoleManager.Print("Please enter Graph Edge Count:");
         int edgeCount = InputeManager.RangeInput(1, int.MaxValue);
-        
+        Graph graph = new Graph(vertexCount, edgeCount);
         for (int i = 0; i < edgeCount; i++)
         {
             ConsoleManager.Print($"Please enter the number of vertices of edge {i + 1}");
             string enter = Console.ReadLine();
             string[] str = new string[2];
             str = enter.Split();
-            edges[0, i] = int.Parse(str[0]);
-            edges[1, i] = int.Parse(str[1]);
+            graph.edges[0, i] = int.Parse(str[0]);
+            graph.edges[1, i] = int.Parse(str[1]);
         }
         int color1 = 0;
-        Graph.GraphColor_Way1(ref vGraph, edges, ref color1);
+        GraphCalCulations.GraphColor_Way1(ref graph, ref color1);
         ConsoleManager.Print(color1);
 
 
         int color2 = 0;
-        for (int i = 0; i < vGraph.Length; i++)
+        for (int i = 0; i < graph.vGraph.Length; i++)
         {
-            vGraph[i] = 0;
+            graph.vGraph[i] = 0;
         }
-        Graph.GraphColor_Way2(ref vGraph, edges, ref color2);
+        GraphCalCulations.GraphColor_Way2(ref graph, ref color2);
         ConsoleManager.Print(color2);
     }
     
