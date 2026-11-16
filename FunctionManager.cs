@@ -63,4 +63,36 @@ static class FunctionManager
         }
         return list;
     }
+
+    internal static void GraphColorM()
+    {
+        ConsoleManager.Print("Please enter Graph Vertex Count :");
+        int vertexCount = InputeManager.RangeInput(1,int.MaxValue);
+        
+        ConsoleManager.Print("Please enter Graph Edge Count:");
+        int edgeCount = InputeManager.RangeInput(1, int.MaxValue);
+        
+        for (int i = 0; i < edgeCount; i++)
+        {
+            ConsoleManager.Print($"Please enter the number of vertices of edge {i + 1}");
+            string enter = Console.ReadLine();
+            string[] str = new string[2];
+            str = enter.Split();
+            edges[0, i] = int.Parse(str[0]);
+            edges[1, i] = int.Parse(str[1]);
+        }
+        int color1 = 0;
+        Graph.GraphColor_Way1(ref vGraph, edges, ref color1);
+        ConsoleManager.Print(color1);
+
+
+        int color2 = 0;
+        for (int i = 0; i < vGraph.Length; i++)
+        {
+            vGraph[i] = 0;
+        }
+        Graph.GraphColor_Way2(ref vGraph, edges, ref color2);
+        ConsoleManager.Print(color2);
+    }
+    
 }

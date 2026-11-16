@@ -29,33 +29,7 @@ static partial class Program
                 FunctionManager.ListReverseM();
                 break;
             case 5:
-                Console.WriteLine("Please enter Graph Vertex Count :");
-                int vertexCount = int.Parse(Console.ReadLine());
-                int[] vGraph = new int[vertexCount];
-                Console.WriteLine("Please enter Graph Edge Count:");
-                int edgeCount = int.Parse(Console.ReadLine());
-                int[,] edges = new int[2, edgeCount];
-                for (int i = 0; i < edgeCount; i++)
-                {
-                    Console.WriteLine($"Please enter the number of vertices of edge {i + 1}");
-                    string enter = Console.ReadLine();
-                    string[] str = new string[2];
-                    str = enter.Split();
-                    edges[0, i] = int.Parse(str[0]);
-                    edges[1, i] = int.Parse(str[1]);
-                }
-                int color1 = 0;
-                Graph.GraphColor_Way1(ref vGraph, edges, ref color1);
-                Console.WriteLine(color1);
-
-
-                int color2 = 0;
-                for (int i = 0; i < vGraph.Length; i++)
-                {
-                    vGraph[i] = 0;
-                }
-                Graph.GraphColor_Way2(ref vGraph, edges, ref color2);
-                Console.WriteLine(color2);
+                FunctionManager.GraphColorM();            
                 break;
             case 6:
                 Console.WriteLine("Please enter the number of row and column for square matrix :");
