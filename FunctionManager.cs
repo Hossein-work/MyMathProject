@@ -6,8 +6,8 @@ static class FunctionManager
     internal static void FactorialM()
     {
         ConsoleManager.Print("n is :");
-        int input = InputeManager.RangeInput(0, int.MaxValue);
-        long result = MathematicalCalculations.Factorial(input);
+        short input = InputeManager.RangeInput<short>(0, short.MaxValue);
+        BigInteger result = MathematicalCalculations.Factorial(input);
         ConsoleManager.Print(result.ToString("##,##"), ConsoleColor.Green);
     }
     internal static void FibonachiM()

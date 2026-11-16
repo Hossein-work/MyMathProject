@@ -4,12 +4,15 @@ namespace MyMathProject
 {
     internal static class MathematicalCalculations
     {
-        internal static long Factorial(long x)
+        internal static BigInteger Factorial(short x)
         {
-            if (x == 0)
-                return 1;
-            else
-                return x * Factorial(x - 1);
+            BigInteger counter = 1;
+            while (x != 0)
+            {
+                counter *= x;
+                x--;
+            }
+            return counter;
         }
         /*internal static long Fibonachi(int x)
         {
