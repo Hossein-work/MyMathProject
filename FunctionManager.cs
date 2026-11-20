@@ -53,7 +53,7 @@ static class FunctionManager
     internal static List<long> GetList()
     {
         ConsoleManager.Print("Please enter number of list elements:");
-        int n = InputeManager.RangeInput(0,int.MaxValue);
+        int n = InputeManager.RangeInput(0, int.MaxValue);
         List<long> list = new List<long>();
         for (int i = 1; i <= n; i++)
         {
@@ -96,5 +96,23 @@ static class FunctionManager
         GraphCalCulations.GraphColor_Way2(ref graph, ref color2);
         ConsoleManager.Print(color2);
     }
-    
+
+    internal static void MatrixDeterminantM()
+    {
+        ConsoleManager.Print("Please enter the number of row and column for square matrix :");
+        int rowAndColumn = InputeManager.RangeInput(1,short.MaxValue);
+        List<long> matrix = new List<long>();
+        for (int i = 0; i < rowAndColumn; i++)
+        {
+            for (int j = 0; j < rowAndColumn; j++)
+            {
+                ConsoleManager.Print($"Please enter row {i + 1} and column {j + 1} element :");
+                long element = InputeManager.RangeInput(1, short.MaxValue);
+                matrix.Add(element);
+            }
+        }
+        long determinant = 0;
+        long outPut = MatrixCalculations.MatrixDeterminant(matrix, rowAndColumn, determinant);
+        ConsoleManager.Print(outPut);
+    }
 }

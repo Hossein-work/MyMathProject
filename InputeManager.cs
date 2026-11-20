@@ -5,7 +5,7 @@
         internal static T RangeInput<T>(T start, T end)
         where T : IParsable<T>, IComparable<T>
         {
-            ConsoleManager.Print($"Please enter a number betwen {start} and {end}!", ConsoleColor.White);
+            ConsoleManager.Print($"({start} until {end})", ConsoleColor.White);
             while (true)
             {
                 string? input = Console.ReadLine();
